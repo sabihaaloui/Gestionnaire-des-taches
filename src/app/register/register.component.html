@@ -1,0 +1,41 @@
+<div class="register-container">
+  <h2>Créer un compte</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input id="nom" formControlName="nom" placeholder="Votre nom" />
+      <small *ngIf="f['nom'].touched && f['nom'].invalid">Nom requis</small>
+    </div>
+
+    <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input id="prenom" formControlName="prenom" placeholder="Votre prénom" />
+      <small *ngIf="f['prenom'].touched && f['prenom'].invalid">Prénom requis</small>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" placeholder="Votre email" />
+      <small *ngIf="f['email'].touched && f['email'].errors?.['required']">Email requis</small>
+      <small *ngIf="f['email'].touched && f['email'].errors?.['email']">Email invalide</small>
+    </div>
+
+    <div class="form-group">
+      <label for="role">Rôle</label>
+      <select id="role" formControlName="role">
+        <option value="" disabled selected>Choisir un rôle</option>
+        <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+      </select>
+      <small *ngIf="f['role'].touched && f['role'].invalid">Rôle requis</small>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" formControlName="password" placeholder="Mot de passe" />
+      <small *ngIf="f['password'].touched && f['password'].errors?.['required']">Mot de passe requis</small>
+      <small *ngIf="f['password'].touched && f['password'].errors?.['minlength']">Minimum 6 caractères</small>
+    </div>
+
+    <button type="submit" [disabled]="registerForm.invalid">Créer un compte</button>
+  </form>
+</div>

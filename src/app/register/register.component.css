@@ -1,0 +1,46 @@
+.register-container {
+  width: 350px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 2px solid #5ab55e;
+  border-radius: 8px;
+  background-color: #e6f0e6;
+}
+
+h2 {
+  text-align: center;
+  color: #5ab55e;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+input, select {
+  padding: 8px;
+  border: 1px solid #4caf50;
+  border-radius: 4px;
+}
+
+small {
+  color: red;
+  font-size: 12px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #5ab55e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:disabled {
+  background-color: #a7c7a7;
+  cursor: not-allowed;
+}

@@ -1,0 +1,46 @@
+<div class="container">
+  <h1>🗓️ Gestionnaire de Tâches</h1>
+
+  <input [(ngModel)]="title" type="text" placeholder="Titre de la tâche" />
+  <textarea [(ngModel)]="desc" placeholder="Description de la tâche"></textarea>
+  <label for="start">Date de début :</label>
+  <input type="date" [(ngModel)]="start" />
+  <label for="end">Date de fin :</label>
+  <input type="date" [(ngModel)]="end" />
+
+  <button (click)="addOrUpdateTask()">💾 Enregistrer</button>
+
+  <hr />
+  <h2>📋 Mes tâches</h2>
+  <div *ngIf="tasks.length === 0">Aucune tâche disponible.</div>
+  <div *ngFor="let task of tasks" class="task">
+    <strong>{{ task.title }}</strong><br />
+    🗓️ Du {{ task.start }} au {{ task.end }}
+    <div class="task-actions">
+      <button (click)="toggleInlineDetails(task.id)">Afficher détails internes</button>
+      <button (click)="showDetails(task)">Afficher détails (popup)</button>
+      <button (click)="editTask(task)">Modifier</button>
+      <button (click)="deleteTask(task.id)">Supprimer</button>
+    </div>
+    <div
+      *ngIf="activeDetailsId === task.id"
+      style="margin-top: 10px; background: #fff; padding: 10px; border-radius: 6px;"
+    >
+      <p><strong>Description:</strong> {{ task.desc || 'Aucune description' }}</p>
+      <p><strong>Date de début:</strong> {{ task.start }}</p>
+      <p><strong>Date de fin:</strong> {{ task.end }}</p>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div *ngIf="showModal" id="detailsModal" class="modal">
+    <div id="detailsModalContent" class="modal-content">
+      <h2>Détails de la tâche</h2>
+      <p><strong>Titre :</strong> {{ modalTask?.title }}</p>
+      <p><strong>Description :</strong> {{ modalTask?.desc }}</p>
+      <p><strong>Date de début :</strong> {{ modalTask?.start }}</p>
+      <p><strong>Date de fin :</strong> {{ modalTask?.end }}</p>
+      <button (click)="closeDetails()">Fermer</button>
+    </div>
+  </div>
+</div>
