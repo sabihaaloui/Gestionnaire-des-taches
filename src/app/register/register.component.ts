@@ -1,26 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-
-interface User {
-  nom: string;
-  prenom: string;
-  email: string;
-  role: string;
-  password: string;
-}
+import { AuthService } from '../auth-service.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
-  registerForm: FormGroup;
+export class RegisterComponent implements OnInit {
+  registerForm!: FormGroup;
   submitted = false;
-  roles = ['admin', 'assistant', 'commercial'];
+  roles = ['USER', 'ADMIN', 'ASSISTANT']; // Liste des rôles
+  errorMessage = '';
+  successMessage = '';
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
+
+  ngOnInit(): void {
     this.registerForm = this.fb.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
@@ -30,29 +26,25 @@ export class RegisterComponent {
     });
   }
 
-  get f() {
-    return this.registerForm.controls;
-  }
+  // Getter pratique pour le formulaire
+  get f() { return this.registerForm.controls; }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
-    if (this.registerForm.invalid) {
-      return;
-    }
+    this.errorMessage = '';
+    this.successMessage = '';
 
-    const users: User[] = JSON.parse(localStorage.getItem('users') || '[]');
+    if (this.registerForm.invalid) return;
 
-    // Vérifier si email existe déjà
-    const emailExist = users.find(u => u.email === this.registerForm.value.email);
-    if (emailExist) {
-      alert('Email déjà utilisé.');
-      return;
-    }
-
-    users.push(this.registerForm.value);
-    localStorage.setItem('users', JSON.stringify(users));
-
-    alert('Inscription réussie ! Veuillez vous connecter.');
-    this.router.navigate(['/login']);
+    this.authService.register(this.registerForm.value).subscribe({
+      next: (res) => {
+        this.successMessage = 'Compte créé avec succès !';
+        this.registerForm.reset();
+        this.submitted = false;
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.message || 'Erreur lors de la création du compte';
+      }
+    });
   }
 }

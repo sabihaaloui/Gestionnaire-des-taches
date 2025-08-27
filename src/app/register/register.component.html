@@ -1,6 +1,7 @@
 <div class="register-container">
   <h2>Créer un compte</h2>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    
     <div class="form-group">
       <label for="nom">Nom</label>
       <input id="nom" formControlName="nom" placeholder="Votre nom" />
@@ -38,4 +39,7 @@
 
     <button type="submit" [disabled]="registerForm.invalid">Créer un compte</button>
   </form>
+
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
 </div>

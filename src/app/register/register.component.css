@@ -1,46 +1,95 @@
-.register-container {
-  width: 350px;
-  margin: 40px auto;
-  padding: 20px;
-  border: 2px solid #5ab55e;
-  border-radius: 8px;
-  background-color: #e6f0e6;
+/* Container principal */
+.login-container, .register-container {
+  width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
 }
 
-h2 {
+/* Titres */
+.login-container h2, .register-container h2 {
   text-align: center;
-  color: #5ab55e;
+  margin-bottom: 20px;
+  color: #333;
 }
 
+/* Form group */
 .form-group {
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
 }
 
-input, select {
-  padding: 8px;
-  border: 1px solid #4caf50;
-  border-radius: 4px;
+/* Labels */
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
 }
 
-small {
-  color: red;
-  font-size: 12px;
+/* Inputs et select */
+.form-group input,
+.form-group select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
+/* Messages d'erreur */
+.error {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* Messages de succès */
+.success {
+  color: #2ecc71;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Boutons */
 button {
   width: 100%;
-  padding: 10px;
-  background-color: #5ab55e;
+  padding: 12px;
+  background-color: #27ae60;
   color: white;
+  font-size: 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
 }
 
 button:disabled {
-  background-color: #a7c7a7;
+  background-color: #95a5a6;
   cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #2ecc71;
+}
+
+/* Liens */
+.register-link, .forgot-password {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.register-link a, .forgot-password a {
+  text-decoration: none;
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.register-link a:hover, .forgot-password a:hover {
+  text-decoration: underline;
 }

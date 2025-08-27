@@ -1,86 +1,95 @@
-.login-container {
-  max-width: 350px;
-  margin: 80px auto;
-  background-color: #d0f0c0; /* pistache */
-  padding: 25px 30px;
+/* Container principal */
+.login-container, .register-container {
+  width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
   border-radius: 10px;
-  box-shadow: 0 0 10px #a4c639cc;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  background-color: #f9f9f9;
   font-family: Arial, sans-serif;
 }
 
-h2 {
+/* Titres */
+.login-container h2, .register-container h2 {
   text-align: center;
-  margin-bottom: 25px;
-  color: #4a7c2b;
+  margin-bottom: 20px;
+  color: #333;
 }
 
+/* Form group */
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
 }
 
-label {
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #3e5e1f;
+/* Labels */
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
 }
 
-input {
-  padding: 8px 10px;
-  font-size: 1rem;
-  border: 1px solid #a4c639;
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.3s ease;
+/* Inputs et select */
+.form-group input,
+.form-group select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-input:focus {
-  border-color: #6ba427;
+/* Messages d'erreur */
+.error {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 5px;
 }
 
+/* Messages de succès */
+.success {
+  color: #2ecc71;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Boutons */
 button {
   width: 100%;
-  background-color: #6ba427;
+  padding: 12px;
+  background-color: #27ae60;
   color: white;
-  font-weight: 600;
-  padding: 10px 0;
+  font-size: 16px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 1.1rem;
+  margin-top: 10px;
   transition: background-color 0.3s ease;
 }
 
 button:disabled {
-  background-color: #a4c63988;
+  background-color: #95a5a6;
   cursor: not-allowed;
 }
 
 button:hover:not(:disabled) {
-  background-color: #4a7c2b;
+  background-color: #2ecc71;
 }
 
-.error {
-  color: #b10000;
-  font-size: 0.85rem;
-  margin-top: 4px;
-}
-
-.register-link,
-.forgot-password {
+/* Liens */
+.register-link, .forgot-password {
   text-align: center;
   margin-top: 15px;
 }
 
-.register-link a,
-.forgot-password a {
-  color: #4a7c2b;
+.register-link a, .forgot-password a {
   text-decoration: none;
-  font-weight: 600;
+  color: #27ae60;
+  font-weight: bold;
 }
 
-.register-link a:hover,
-.forgot-password a:hover {
+.register-link a:hover, .forgot-password a:hover {
   text-decoration: underline;
 }
